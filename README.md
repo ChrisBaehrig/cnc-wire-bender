@@ -2,9 +2,9 @@
 Open Source Project by ChrisBaehrig for a cnc controlled wire bender based on an arduino and cad fusion360 file
 
 ## Concept and changes 
-The Hardware bases on the Idea of Pensas diwire bender (https://code.google.com/archive/p/diwire/) and the Project from HowtoMechatronics Wire Bender (https://howtomechatronics.com/projects/arduino-3d-wire-bending-machine/). 
+The Hardware bases on the Idea of Pensas diwire bender (https://code.google.com/archive/p/diwire/ License: https://creativecommons.org/licenses/by-sa/3.0/us/) and the Project from HowtoMechatronics Wire Bender (https://howtomechatronics.com/projects/arduino-3d-wire-bending-machine/). 
 Power electronic ist improved to for more durability and stronger wires. 
-Software ist improved for the end to end production from the cad tool fusion 360 until the cnc wire bending
+Software is new developed for the end to end production from the cad tool fusion 360 until the cnc wire bending
 
 ## Workflow and Architecture
 
