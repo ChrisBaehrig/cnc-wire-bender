@@ -1,0 +1,4 @@
+PyQt5==5.15.7
+pandas==1.5.1
+PyYAML==6.0
+pyserial==3.5

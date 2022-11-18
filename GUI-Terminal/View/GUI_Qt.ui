@@ -1,0 +1,1209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1119</width>
+    <height>756</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_8">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab_einrichten">
+       <property name="focusPolicy">
+        <enum>Qt::TabFocus</enum>
+       </property>
+       <attribute name="title">
+        <string>Einrichten</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="label_titel_connection">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Verbindung:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_connection">
+          <item row="1" column="1">
+           <widget class="QPushButton" name="pushButton_COM_save">
+            <property name="text">
+             <string>COM-Port speichern</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="button_end_connection">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Verbindung beenden</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="Text_Status">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Status:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLabel" name="out_status_connection">
+            <property name="text">
+             <string>Verbindung... </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="button_build_connection">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Verbindung aufbauen</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QComboBox" name="comboBox_com_port">
+            <property name="currentText">
+             <string>COM-Port wählen</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>COM-Port wählen</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM3</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM4</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM5</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM6</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM7</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM8</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>COM9</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_port">
+            <property name="text">
+             <string>Aktueller COM-Port</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Minimum</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_titel_steps">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Motoren durch Eingabe der Steps steuern:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_steps">
+          <item row="1" column="4">
+           <spacer name="horizontalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Minimum</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>100</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="3">
+           <widget class="QSpinBox" name="spinBox_einrichten_xaxis">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Min: -10.286, Max: 10.286&lt;/p&gt;&lt;p&gt;Eine Umdrehung: 10286&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="minimum">
+             <number>-10286</number>
+            </property>
+            <property name="maximum">
+             <number>10286</number>
+            </property>
+            <property name="singleStep">
+             <number>100</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="5">
+           <widget class="QSpinBox" name="spinBox_einrichten_yaxis_speed">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximum">
+             <number>5000</number>
+            </property>
+            <property name="singleStep">
+             <number>100</number>
+            </property>
+            <property name="value">
+             <number>1500</number>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="5">
+           <widget class="QSpinBox" name="spinBox_einrichten_zaxis_speed">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximum">
+             <number>5000</number>
+            </property>
+            <property name="singleStep">
+             <number>100</number>
+            </property>
+            <property name="value">
+             <number>1500</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="5">
+           <widget class="QSpinBox" name="spinBox_einrichten_xaxis_speed">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximum">
+             <number>6000</number>
+            </property>
+            <property name="singleStep">
+             <number>100</number>
+            </property>
+            <property name="value">
+             <number>2000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="7">
+           <widget class="QPushButton" name="pushButton_einrichten_run_yaxis">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>RUN</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="7">
+           <widget class="QPushButton" name="pushButton_einrichten_run_xaxis">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>RUN</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="8">
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="4" column="7">
+           <widget class="QPushButton" name="pushButton_einrichten_run_paxis">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>RUN</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLabel" name="label_paxis">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Pin&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QPushButton" name="pushButton_point_zero">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Nullpunkt Setzen</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="label_yaxis">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Turn (Y-Achse)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3">
+           <widget class="QSpinBox" name="spinBox_einrichten_zaxis">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Min: -20.000, Max: 20.000 &lt;/p&gt;&lt;p&gt;Eine Umdrehung: 1028&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="minimum">
+             <number>-20000</number>
+            </property>
+            <property name="maximum">
+             <number>20000</number>
+            </property>
+            <property name="singleStep">
+             <number>100</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Minimum</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>100</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="3" column="7">
+           <widget class="QPushButton" name="pushButton_einrichten_run_zaxis">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>RUN</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="6">
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::MinimumExpanding</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>100</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="label_zaxis">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Feeder (Z-Achse)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_xaxis">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Bender (X-Achse)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="label_xaxis_2">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Steps&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="QLabel" name="label_xaxis_3">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Speed&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Steps/Sekunde&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3">
+           <widget class="QSpinBox" name="spinBox_einrichten_paxis">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Min: 0, Max: 180&lt;/p&gt;&lt;p&gt;Unten: 50&lt;/p&gt;&lt;p&gt;Oben: 160&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="maximum">
+             <number>180</number>
+            </property>
+            <property name="singleStep">
+             <number>5</number>
+            </property>
+            <property name="value">
+             <number>50</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QSpinBox" name="spinBox_einrichten_yaxis">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Min: -10.700, Max: 10.700 &lt;/p&gt;&lt;p&gt;Eine Umdrehung: 10700&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="minimum">
+             <number>-10700</number>
+            </property>
+            <property name="maximum">
+             <number>10700</number>
+            </property>
+            <property name="singleStep">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="manuell">
+       <attribute name="title">
+        <string>Manuelle Steuerung</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QGroupBox" name="groupBox_manuell">
+          <property name="title">
+           <string>Manuell</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="0" column="4">
+            <layout class="QGridLayout" name="gridLayout_paxis">
+             <item row="0" column="0">
+              <widget class="QLabel" name="text_paxis">
+               <property name="text">
+                <string>Pin</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QSpinBox" name="spinBox_paxis">
+               <property name="minimum">
+                <number>-100</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QSlider" name="verticalSlider_paxis">
+               <property name="autoFillBackground">
+                <bool>false</bool>
+               </property>
+               <property name="minimum">
+                <number>0</number>
+               </property>
+               <property name="maximum">
+                <number>1</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Minimum</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="1" column="2" colspan="2">
+            <widget class="QPushButton" name="button_send_manual">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>RUN</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <layout class="QGridLayout" name="gridLayout_zaxis">
+             <item row="0" column="0">
+              <widget class="QLabel" name="text_yaxis">
+               <property name="text">
+                <string>Turn (Y-Achse)</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QSpinBox" name="spinBox_yaxis">
+               <property name="minimum">
+                <number>-10700</number>
+               </property>
+               <property name="maximum">
+                <number>10700</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QSlider" name="verticalSlider_yaxis">
+               <property name="autoFillBackground">
+                <bool>false</bool>
+               </property>
+               <property name="minimum">
+                <number>-10700</number>
+               </property>
+               <property name="maximum">
+                <number>10700</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="3">
+            <layout class="QGridLayout" name="gridLayout_yaxis">
+             <item row="1" column="0">
+              <widget class="QSpinBox" name="spinBox_zaxis">
+               <property name="minimum">
+                <number>-20000</number>
+               </property>
+               <property name="maximum">
+                <number>20000</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="text_zaxis">
+               <property name="text">
+                <string>Feeder (Z-Achse)</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QSlider" name="verticalSlider_zaxis">
+               <property name="autoFillBackground">
+                <bool>false</bool>
+               </property>
+               <property name="minimum">
+                <number>-20000</number>
+               </property>
+               <property name="maximum">
+                <number>20000</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="gridLayout_xaxis">
+             <item row="0" column="0">
+              <widget class="QLabel" name="text_xaxis">
+               <property name="text">
+                <string>Bender (X-Achse)</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QSlider" name="verticalSlider_xaxis">
+               <property name="autoFillBackground">
+                <bool>false</bool>
+               </property>
+               <property name="minimum">
+                <number>-4000</number>
+               </property>
+               <property name="maximum">
+                <number>4000</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QSpinBox" name="spinBox_xaxis">
+               <property name="minimum">
+                <number>-4000</number>
+               </property>
+               <property name="maximum">
+                <number>4000</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="automatic">
+       <attribute name="title">
+        <string>Automatische Steuerung</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QGroupBox" name="groupBox_automatic">
+          <property name="title">
+           <string>Automatik</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="7" column="0">
+            <spacer name="verticalSpacer_8">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Maximum</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="0" column="4">
+            <spacer name="horizontalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="text_last_gcode">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Letzte GCode Zeilen:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="14" column="0">
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="out_status_gcode">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>GCode nicht geladen</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="0">
+            <widget class="QLabel" name="text_next_gcode">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Aktuelle GCode Zeile:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="0">
+            <spacer name="verticalSpacer_9">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Maximum</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="3" column="0">
+            <widget class="QPushButton" name="pushButton_automatic_run">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Run</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" rowspan="2">
+            <widget class="QLabel" name="text_status_gcode">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Status&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <spacer name="verticalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Maximum</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="12" column="0">
+            <widget class="QLabel" name="text_last_gcode_3">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Nächste GCode Zeilen:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="0" colspan="3">
+            <widget class="QLineEdit" name="out_in_act_gcode">
+             <property name="text">
+              <string>Load GCode</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="pushButton_automatic_open_gcode">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Öffne G-Code</string>
+             </property>
+            </widget>
+           </item>
+           <item row="13" column="0" colspan="3">
+            <widget class="QLabel" name="out_next_gcode">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Zeile1&lt;/p&gt;&lt;p&gt;Zeile2&lt;/p&gt;&lt;p&gt;Zeile3&lt;/p&gt;&lt;p&gt;Zeile4&lt;/p&gt;&lt;p&gt;Zeile5&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0" colspan="3">
+            <widget class="QLabel" name="out_last_gcode">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Zeile1&lt;/p&gt;&lt;p&gt;Zeile2&lt;/p&gt;&lt;p&gt;Zeile3&lt;/p&gt;&lt;p&gt;Zeile4&lt;/p&gt;&lt;p&gt;Zeile5&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QCheckBox" name="checkBox">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="text">
+              <string>Schritmodus</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QPushButton" name="pushButton_next_row">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Next Step</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1119</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuDatei">
+    <property name="title">
+     <string>Datei</string>
+    </property>
+    <addaction name="actionGCode_laden"/>
+    <addaction name="separator"/>
+    <addaction name="actionBeenden_2"/>
+   </widget>
+   <addaction name="menuDatei"/>
+  </widget>
+  <action name="actionGCode_laden">
+   <property name="text">
+    <string>GCode laden</string>
+   </property>
+  </action>
+  <action name="actionBeenden_2">
+   <property name="text">
+    <string>Beenden</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>button_build_connection</tabstop>
+  <tabstop>spinBox_einrichten_xaxis</tabstop>
+  <tabstop>spinBox_einrichten_xaxis_speed</tabstop>
+  <tabstop>pushButton_einrichten_run_xaxis</tabstop>
+  <tabstop>spinBox_einrichten_yaxis</tabstop>
+  <tabstop>spinBox_einrichten_yaxis_speed</tabstop>
+  <tabstop>pushButton_einrichten_run_yaxis</tabstop>
+  <tabstop>spinBox_einrichten_zaxis</tabstop>
+  <tabstop>spinBox_einrichten_zaxis_speed</tabstop>
+  <tabstop>pushButton_einrichten_run_zaxis</tabstop>
+  <tabstop>spinBox_einrichten_paxis</tabstop>
+  <tabstop>pushButton_einrichten_run_paxis</tabstop>
+  <tabstop>pushButton_point_zero</tabstop>
+  <tabstop>comboBox_com_port</tabstop>
+  <tabstop>pushButton_COM_save</tabstop>
+  <tabstop>button_end_connection</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>verticalSlider_zaxis</tabstop>
+  <tabstop>button_send_manual</tabstop>
+  <tabstop>spinBox_yaxis</tabstop>
+  <tabstop>verticalSlider_yaxis</tabstop>
+  <tabstop>verticalSlider_xaxis</tabstop>
+  <tabstop>spinBox_xaxis</tabstop>
+  <tabstop>spinBox_zaxis</tabstop>
+  <tabstop>spinBox_paxis</tabstop>
+  <tabstop>verticalSlider_paxis</tabstop>
+  <tabstop>pushButton_automatic_run</tabstop>
+  <tabstop>out_in_act_gcode</tabstop>
+  <tabstop>pushButton_automatic_open_gcode</tabstop>
+  <tabstop>checkBox</tabstop>
+  <tabstop>pushButton_next_row</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>spinBox_xaxis</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>verticalSlider_xaxis</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>159</x>
+     <y>113</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>139</x>
+     <y>443</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_zaxis</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>verticalSlider_zaxis</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>691</x>
+     <y>113</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>676</x>
+     <y>443</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>verticalSlider_xaxis</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_xaxis</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>139</x>
+     <y>443</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>159</x>
+     <y>113</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>verticalSlider_zaxis</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_zaxis</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>676</x>
+     <y>443</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>691</x>
+     <y>113</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>verticalSlider_paxis</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_paxis</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>943</x>
+     <y>322</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>956</x>
+     <y>113</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>verticalSlider_yaxis</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_yaxis</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>405</x>
+     <y>443</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>425</x>
+     <y>113</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_paxis</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>verticalSlider_paxis</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>956</x>
+     <y>113</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>943</x>
+     <y>322</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_yaxis</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>verticalSlider_yaxis</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>425</x>
+     <y>113</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>405</x>
+     <y>443</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

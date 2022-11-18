@@ -1,0 +1,38 @@
+home_position:
+  left: 10.0
+  right: -10.0
+p_axis:
+  name: Pin
+  number: 4
+  pin_down: 50
+  pin_up: 160
+port: COM6
+position:
+  p: 0
+  x: 0.0
+  y: 0
+  z: 0
+x_axis:
+  angle_max: 135.0
+  angle_min: -135.0
+  max_speed: 6000
+  name: Bender
+  number: 1
+  steps_per_round: 18462
+  work_speed: 2000
+y_axis:
+  angle_max: 720
+  angle_min: -720
+  max_speed: 5000
+  name: Y-Achse
+  number: 2
+  steps_per_round: 10700
+  work_speed: 1500
+z_axis:
+  angle_max: 1000.0
+  angle_min: -1000.0
+  max_speed: 5000
+  name: Feeder
+  number: 3
+  steps_per_mm: 6.54445126
+  work_speed: 1500
