@@ -26,7 +26,7 @@ Example: ```N4 G01 X10 I1500 Y2 J1200 Z9 K1300```
 ### G2 multi Axis similstaniouly --> tbd
 
 ### G3 Circle bending 
-Example: ```N4 G03 R100 Y10 Z10 L200 I1500 J1200 K1300 P0.1``` 
+Example: ```N4 G03 R100 Y10 Z10 L200 I1500 J1200 K1300 P0.1``` --> tbd
   - Row: 4 
   - Command: G3
   - R: Radius + 10mm clockwise, Speed: 1500 steps / sec

@@ -138,7 +138,7 @@ class InterpreterToCommand:
         self.set_pin(str(self.dict_gcode['row']), 0)  # Pin down
         self.terminal.send_command("<0, 3, 2000, 1500>")
         print("Command send to Arduino: " + "<0, 3, 2000, 1500>")
-        self.G28()
+        # self.G28() # TODO: G28 Debugen und testen dann wieder einschalten
         return 1
 
     def M11(self):  # Drive wire for cutting
@@ -159,7 +159,7 @@ class InterpreterToCommand:
 
     def M30(self):  # Programm ende beendet Automatik
         print("M30")
-        self.G28()
+        #self.G28() # TODO: G28 Debugen und testen dann wieder einschalten
         return 1
 
     # -------------Calculations----------------------

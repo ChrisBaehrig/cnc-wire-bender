@@ -219,9 +219,11 @@ class GUI(QtWidgets.QMainWindow):
 
         # self.file_path_gcode = "D:/Hobby_Projekte/Drahtbiegemaschiene/Programmierung/Excel-Berechnung/test2.xlsx"
         # self.file_path_gcode = "C:/Users/Q396791/Desktop/Bender/20-01-09_Ecel_V1/test.xlsx"  # Nur zum Testen
+        # self.file_path_gcode = "D:/Hobby_Projekte/Drahtbiegemaschiene/cnc-wire-bender/Examples/GCode/test.xlsx"  # Nur zum Testen
         self.file_path_gcode = tk.filedialog.askopenfilename()  # Debug
         self.ui.out_status_gcode.setText("G Code ist geladen")
         print(self.file_path_gcode)
+        print("test")
 
         self.g_code = GCode(self.file_path_gcode)
         print("GCode ist geladen")
