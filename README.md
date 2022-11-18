@@ -9,6 +9,10 @@ Software is new developed for the end to end production from the cad tool fusion
 ## Workflow and Architecture
 ![image](https://user-images.githubusercontent.com/60329834/202792362-5203a7a0-5221-4389-9dc4-5816899560f9.png)
 
+![image](https://user-images.githubusercontent.com/60329834/202801029-710168b7-b5dd-4b51-b331-91631d460f81.png)
+
+
+
 ## Overview GCode commands
 
 ### G1 single Axis 
