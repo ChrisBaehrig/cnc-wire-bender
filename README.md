@@ -12,7 +12,7 @@ Software is new developed for the end to end production from the cad tool fusion
 ## Overview GCode commands
 
 ### G1 single Axis 
-Example: N4 G01 X10 I1500 Y2 J1200 Z9 K1300
+Example: ```N4 G01 X10 I1500 Y2 J1200 Z9 K1300```
   - Row: 4 
   - Command: G1
   - X-Axis: Angle: +10 degree, Speed: 1500 steps / sec
@@ -22,7 +22,7 @@ Example: N4 G01 X10 I1500 Y2 J1200 Z9 K1300
 ### G2 multi Axis similstaniouly --> tbd
 
 ### G3 Circle bending 
-Example: N4 G03 R100 Y10 Z10 L200 I1500 J1200 K1300 P0.1: 
+Example: ```N4 G03 R100 Y10 Z10 L200 I1500 J1200 K1300 P0.1``` 
   - Row: 4 
   - Command: G3
   - R: Radius + 10mm clockwise, Speed: 1500 steps / sec
@@ -31,21 +31,46 @@ Example: N4 G03 R100 Y10 Z10 L200 I1500 J1200 K1300 P0.1:
   - L: Absolute Lenght: 200mm
   - (Optional) Correctionfactor P0.1 = 10% overbending
 
-Example: N4 G03 R100 Y10 Z10 H2.5 I1500 J1200 K1300:
+Example: ```N4 G03 R100 Y10 Z10 H2.5 I1500 J1200 K1300```
   - H: count of turns (2.5 turns)
 
+### G4 Wait 
+Example: ```G04 H5```
+  - Wait 5 sec
+
+### G5 Wait for Event --> tbd
+
+### G28 Go Home
+Example: ```G28```
+  - Drive to home position
+  <img src="https://user-images.githubusercontent.com/60329834/202800320-6cf4278f-aaba-4bc1-9ac1-806bc5389ff6.png" alt="image" width="400"/>
+
+### G92 Set all Positions to Null
+Example: ```G92```
+  - Set all Positions to Null to Calibrate 
+
+### M10 Drive Wire to bender
+Example: ```M10```
+  - drive feeder 2000 steps 
+
+### M11 Drive Wire for manuel cutting
+Example: ```M11```
+  - drive feeder 200 steps 
+
+### M20 Pin down
+Example: ```M20```
+  - Moves Pin down
+
+### M21 Pin up
+Example: ```M21```
+  - Moves Pin up
+
+### M30 Program end
+Example: ```M30```
 
 
 
-
-### Transformation coordiantes to G-code
-List of G-code commands
-
-### G-code Parser to Machine commands
-
-### Bender API
-
-### Serial connection API Commands: 
+## Serial connection API Commands: 
 
 | variable      	| < 	| row 	| , 	| command 	| , 	| value1 	    | , 	| value2    	| , 	| value3 	| , 	| value4 	| > 	|
 |---------------	|---	|-----	|---	|---------	|---	|--------   	|---	|--------   	|---	|--------	|---	|--------	|---	|
@@ -61,8 +86,9 @@ List of G-code commands
 | switch debug   	| < 	| 1   	| , 	| 9        	| , 	| 1=ON 0=OFF	| , 	| 0         	| , 	| 0      	| , 	| 0.0    	| > 	|
 
 Examples: 
-<123, 1, 100, 2000, 0, 0>
-<1,4,160,0> Pin oben <1,4,50,0> Pin unten
+```<123, 1, 100, 2000, 0, 0>```
+
+```<1,4,160,0>``` Pin oben ```<1,4,50,0>``` Pin unten
 
 
 ## Changelog
