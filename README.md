@@ -7,6 +7,7 @@ Power electronic ist improved to for more durability and stronger wires.
 Software is new developed for the end to end production from the cad tool fusion 360 until the cnc wire bending
 
 ## Workflow and Architecture
+![image](https://user-images.githubusercontent.com/60329834/202792362-5203a7a0-5221-4389-9dc4-5816899560f9.png)
 
 
 
@@ -28,8 +29,24 @@ List of G-code commands
 
 ### Bender API
 
-### Arduino motor control 
+### Serial connection API Commands: 
 
+| variable      	| < 	| row 	| , 	| command 	| , 	| value1 	    | , 	| value2    	| , 	| value3 	| , 	| value4 	| > 	|
+|---------------	|---	|-----	|---	|---------	|---	|--------   	|---	|--------   	|---	|--------	|---	|--------	|---	|
+| datatyp       	|   	| int 	|   	| int     	|   	| long      	|   	| long      	|   	| long   	|   	| float  	|   	|
+| X-Axis (bend) 	| < 	| 1    	| , 	| 1        	| , 	| steps 	    | , 	| steps/sec 	| , 	| 0      	| , 	| 0.0    	| > 	|
+| Y-Axis (feed) 	| < 	| 1   	| , 	| 2        	| , 	| steps 	    | , 	| steps/sec 	| , 	| 0      	| , 	| 0.0    	| > 	|
+| Z-Axis (turn) 	| < 	| 1   	| , 	| 3        	| , 	| steps     	| , 	| steps/sec 	| , 	| 0      	| , 	| 0.0    	| > 	|
+| p-Axis (pin)   	| < 	| 1   	| , 	| 4        	| , 	| degree    	| , 	| 0         	| , 	| 0      	| , 	| 0.0    	| > 	|
+| Wait for taster	| < 	| 1   	| , 	| 5        	| , 	| 0     	    | , 	| 0         	| , 	| 0      	| , 	| 0.0    	| > 	|
+| tbd            	| < 	| 1   	| , 	| 6        	| , 	| 0     	    | , 	| 0         	| , 	| 0      	| , 	| 0.0    	| > 	|
+| tbd            	| < 	| 1   	| , 	| 7        	| , 	| 0     	    | , 	| 0         	| , 	| 0      	| , 	| 0.0    	| > 	|
+| wait in ms     	| < 	| 1   	| , 	| 8        	| , 	| ms     	    | , 	| 0         	| , 	| 0      	| , 	| 0.0    	| > 	|
+| switch debug   	| < 	| 1   	| , 	| 9        	| , 	| 1=ON 0=OFF	| , 	| 0         	| , 	| 0      	| , 	| 0.0    	| > 	|
+
+Examples: 
+<123, 1, 100, 2000, 0, 0>
+<1,4,160,0> Pin oben <1,4,50,0> Pin unten
 
 
 ## Changelog
