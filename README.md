@@ -9,17 +9,33 @@ Software is new developed for the end to end production from the cad tool fusion
 ## Workflow and Architecture
 ![image](https://user-images.githubusercontent.com/60329834/202792362-5203a7a0-5221-4389-9dc4-5816899560f9.png)
 
+## Overview GCode commands
+
+### G1 single Axis 
+Example: N4 G01 X10 I1500 Y2 J1200 Z9 K1300
+  - Row: 4 
+  - Command: G1
+  - X-Axis: Angle: +10 degree, Speed: 1500 steps / sec
+  - Y-Axis: Angle: +2 degree, Speed: 1200 steps / sec
+  - Z-Axis: Angle: +9 degree, Speed: 1300 steps / sec
+
+### G2 multi Axis similstaniouly --> tbd
+
+### G3 Circle bending 
+Example: N4 G03 R100 Y10 Z10 L200 I1500 J1200 K1300 P0.1: 
+  - Row: 4 
+  - Command: G3
+  - R: Radius + 10mm clockwise, Speed: 1500 steps / sec
+  - Y: Y-Angle: +10 degree, Speed: 1200 steps / sec
+  - Z: Z-Angle: +10 degree, Speed: 1500 steps / sec
+  - L: Absolute Lenght: 200mm
+  - (Optional) Correctionfactor P0.1 = 10% overbending
+
+Example: N4 G03 R100 Y10 Z10 H2.5 I1500 J1200 K1300:
+  - H: count of turns (2.5 turns)
 
 
-## Mechanic
 
-
-## Electronic
-
-
-## Software
-
-### Fusion 360 Macro
 
 
 ### Transformation coordiantes to G-code
