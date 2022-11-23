@@ -12,9 +12,9 @@ Software is new developed for the end to end production from the cad tool fusion
 ![image](https://user-images.githubusercontent.com/60329834/203592264-492a7a8f-42ca-4c8b-bf4f-bf631a19e1d1.png)
 
 ## Frontend GUI Terminal
-  <img src="https://user-images.githubusercontent.com/60329834/203592598-1fac9a12-9ebc-4458-acdb-965c14147522.png" alt="image" width="400"/>
-  <img src="https://user-images.githubusercontent.com/60329834/203592715-6ca137a3-d522-4af1-a836-5ac03bf02248.png" alt="image" width="400"/>
-  <img src="https://user-images.githubusercontent.com/60329834/203592886-62f7b8b4-6c52-47ea-a87f-8a112d42ac87.png" alt="image" width="400"/>
+  <kbd> <img src="https://user-images.githubusercontent.com/60329834/203592598-1fac9a12-9ebc-4458-acdb-965c14147522.png" alt="image" width="600"/> </kbd>
+  <kbd>  <img src="https://user-images.githubusercontent.com/60329834/203592715-6ca137a3-d522-4af1-a836-5ac03bf02248.png" alt="image" width="600"/> </kbd>
+  <kbd>  <img src="https://user-images.githubusercontent.com/60329834/203592886-62f7b8b4-6c52-47ea-a87f-8a112d42ac87.png" alt="image" width="600"/> </kbd>
 
 ## Overview GCode commands
 
