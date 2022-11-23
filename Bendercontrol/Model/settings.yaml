@@ -9,9 +9,9 @@ p_axis:
 port: COM6
 position:
   p: 0
-  x: -10.0
+  x: 45.0
   y: 0
-  z: 100
+  z: 0
 x_axis:
   angle_max: 135.0
   angle_min: -135.0
