@@ -3,7 +3,7 @@ import yaml
 
 class Settings:
     def load_yaml(self):
-        with open('./Model/settings.yaml') as f:
+        with open('Bendercontrol/Model/settings.yaml') as f:
             self.data = yaml.load(f, Loader=yaml.FullLoader)
 
     def get_setting(self, axis, data):
@@ -21,7 +21,7 @@ class Settings:
 
     def set_port(self, new_port):
         self.data['port'] = new_port
-        with open('./Model/settings.yaml', "w") as f:
+        with open('Bendercontrol/Model/settings.yaml', "w") as f:
             yaml.dump(self.data, f)
 
     def set_position(self, position):
@@ -34,7 +34,7 @@ class Settings:
         self.data['position']['y'] = position[1]
         self.data['position']['z'] = position[2]
         self.data['position']['p'] = position[3]
-        with open('./Model/settings.yaml', "w") as f:
+        with open('Bendercontrol/Model/settings.yaml', "w") as f:
             yaml.dump(self.data, f)
 
         position = [self.data['position']['x'], self.data['position']['y'], self.data['position']['z'], self.data['position']['p']]

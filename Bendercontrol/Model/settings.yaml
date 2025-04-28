@@ -6,7 +6,7 @@ p_axis:
   number: 4
   pin_down: 50
   pin_up: 160
-port: COM6
+port: COM4
 position:
   p: 0
   x: 45.0

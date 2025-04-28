@@ -19,16 +19,29 @@
 //V4.1 Verbesserte Servo ansteuerung mit grad
 
 /*Releasplanung:  
-//V5.0 Einbinden der gleichzeitigen Ansteuerung der Stepper
+//V5.0 Überarbeiteter Benderkopf und elektronik in code einbinden
 
 */
+#include <Arduino.h>
 #include <Servo.h>
 #include <LiquidCrystal.h> 
 
-char prog_version[20] = "V3.0 Work";
+// Function prototypes
+void getDataFromPC();
+void parseData();
+void replyToPC();
+void showCommandLCD();
+void run_stepper(int pin_pul, int pin_dir, int steps, int stepper_speed);
+void move_pin(int pin_target);
+void wait_taster(int input_pin);
+void LockMotor();
+void DebugMode(int mode);
+
+// Global variables and objects
+char prog_version[20] = "V5.0 Work";
 
 //Config LCD
-const int rs = 40, en = 41, d4 =46, d5 = 47, d6= 48, d7 = 49;// initialize the library by associating any needed LCD interface pin
+const int rs = 40, en = 41, d4 =46, d5 = 47, d6= 48, d7 = 49;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 //Config Serial
@@ -37,8 +50,8 @@ char inputBuffer[buffSize];
 const char startMarker = '<';
 const char endMarker = '>';
 byte bytesRecvd = 0;
-boolean readInProgress = false;
-boolean newDataFromPC = false;
+bool readInProgress = false;
+bool newDataFromPC = false;
 
 //Config Recaived Data
 int row = 0;
@@ -46,7 +59,7 @@ int command = 0;
 long value_1 = 0;
 long value_2 = 0;
 long value_3 = 0;
-long value_4 = 0; //alternativ: float value_4 = 0.0;
+long value_4 = 0;
 
 //Config Hardware,Pins
 const int xaxis_pul = 2;
@@ -55,124 +68,41 @@ const int yaxis_pul = 4;
 const int yaxis_dir = 5;
 const int zaxis_pul = 6;
 const int zaxis_dir = 7;
-const int pin_LED = 14;  
-const int pin_taster = 18;  
-const byte interrupt_pin_switch = 19;
+const int move_pin_out1 = 18;
+const int move_pin_out2 = 19;
+const int button_next_step = 15;  
+const int switch_debug_mode = 16;
+const byte interrupt_pin_switch1 = 20;
+const byte interrupt_pin_switch2 = 21;
 
-volatile byte motor_lock = false; // Definiere eine globale volatile Variable für den Status der LED, volatile nur für Interrupt benötigt.
+volatile int motor_lock = 0;
 byte debug_mode = true;
 
 //Config Stepper
-const int pulse_width = 20;       // Min. at Manual https://www.omc-stepperonline.com/download/DM332T.pdf = 7.5; Example Pensa = 20
-int pulse_delay = 500;            // Min. at Manual https://www.omc-stepperonline.com/download/DM332T.pdf = 7.5; Example Pensa = 700
+const int pulse_width = 20;
+int pulse_delay = 500;
 
-//Config Servo
-Servo myservo;  // create servo object to control a servo
-const int servo_pin = 8;
-int servo_start = 50; //Winkel in Grad Kleiner ist weiter unten 30 Grad ist ganz unten
-
-
-//============SETUP================================
-
-void setup() {
-  myservo.attach(servo_pin);
-  myservo.write(servo_start);
-  
-  //Config Pins
-  pinMode(xaxis_pul, OUTPUT); 
-  pinMode(xaxis_dir, OUTPUT); 
-  pinMode(yaxis_pul, OUTPUT); 
-  pinMode(yaxis_dir, OUTPUT);
-  pinMode(zaxis_pul, OUTPUT); 
-  pinMode(zaxis_dir, OUTPUT);
-  pinMode(pin_LED, OUTPUT); 
-  pinMode(pin_taster, INPUT_PULLUP); 
-  pinMode(interrupt_pin_switch, INPUT_PULLUP);
-
-  digitalWrite(pin_LED, HIGH); //TODO: LED electric prüfen
-  attachInterrupt(digitalPinToInterrupt(interrupt_pin_switch), LockMotor, CHANGE);
-
-  //Config Serial
-  Serial.begin(9600); // set the baud rate
-  Serial.println("-*-*-*-*-*-*-*-NEW CONNECTION-*-*-*-*-*-*-*-");
-  Serial.print("Version: ");   
-  Serial.println(prog_version); 
-  Serial.println("<Arduino is ready>"); 
-
-  //Config Display
-  lcd.begin(20, 4); // Achtung HiL hat nur (16, 2), alle anderen Zeichen werden auf HiL abgeschnitten
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Version: ");
-  lcd.setCursor(9, 0);
-  lcd.print(prog_version);
-  lcd.setCursor(0, 1);
-  lcd.print("Arduino is ready"); 
-}
-
-//============LOOP=================================
-
-void loop() {
-  getDataFromPC();
-
-  if (newDataFromPC) {   
-    showCommandLCD();
-  
-    switch (command) { //TODO: byte wäre auch möglich statt integer
-      case 1: //Bender (X-Achse)
-        if (debug_mode == true){
-          wait_taster(pin_taster); 
-        }
-        run_stepper(xaxis_pul, xaxis_dir, value_1, value_2);
-        break;
-  
-      case 2: //Turn (Y-Achse)
-        if (debug_mode == true){
-          wait_taster(pin_taster); 
-        }
-        run_stepper(yaxis_pul, yaxis_dir, value_1, value_2);
-        break;
-
-      case 3: //Feeder (Z-Achse)
-        if (debug_mode == true){
-          wait_taster(pin_taster); 
-        }
-        run_stepper(zaxis_pul, zaxis_dir, value_1 * -1, value_2); //value_1 invent because different turning direction
-        break;
-
-      case 4: //Servo
-        if (debug_mode == true){
-          wait_taster(pin_taster); 
-        }
-        run_servo(value_1);
-        break;
-
-      case 5: //Wait for taster
-        wait_taster(pin_taster);
-        break;
-
-      case 8: //Wait in ms
-        lcd.setCursor(0, 3);
-        lcd.print("Wait ms");
-        Serial.println("Wait ms");
-        delay(value_1); //wait in ms (1000 = 1 second) 
-        break;
-
-      case 9: //Change Debug Mode
-        DebugMode(value_1);
-        break;
-          
-      default:
-        Serial.println("Error: Wrong Command at Seriel in");  
-        break;    
-    }
-    replyToPC(); 
+// Function definitions
+void LockMotor() {
+  if (digitalRead(interrupt_pin_switch1) == HIGH) {
+    motor_lock = 1;
+    Serial.println("Secure switch 1 --> Motor locked"); 
+    lcd.setCursor(0, 3);
+    lcd.print("Secure switch 1");
   }
-  
-  newDataFromPC = false;
+  else if (digitalRead(interrupt_pin_switch2) == HIGH) {
+    motor_lock = 2;
+    Serial.println("Secure switch 2 --> Motor locked"); 
+    lcd.setCursor(0, 3);
+    lcd.print("Secure switch 2");
+  }
+  else {
+    motor_lock = 0;
+    Serial.println("Motor-Free"); 
+    lcd.setCursor(0, 3);
+    lcd.print("Free ");
+  }
 }
-
-//============FUNCTIONS=============================
 
 void getDataFromPC() {
   // receive data from PC and save it into inputBuffer
@@ -204,8 +134,116 @@ void getDataFromPC() {
   }
 }
 
-//=============
- 
+//--------------------------------------------------------------------------------------------------------------
+//=====================================================SETUP==================================================
+//--------------------------------------------------------------------------------------------------------------  
+void setup() {
+  //Config Pins
+  pinMode(xaxis_pul, OUTPUT); 
+  pinMode(xaxis_dir, OUTPUT); 
+  pinMode(yaxis_pul, OUTPUT); 
+  pinMode(yaxis_dir, OUTPUT);
+  pinMode(zaxis_pul, OUTPUT); 
+  pinMode(zaxis_dir, OUTPUT);
+  pinMode(move_pin_out1, OUTPUT);
+  pinMode(move_pin_out2, OUTPUT);
+  pinMode(button_next_step, INPUT_PULLUP); 
+  pinMode(switch_debug_mode, INPUT_PULLUP);
+  pinMode(interrupt_pin_switch1, INPUT_PULLUP);
+  pinMode(interrupt_pin_switch2, INPUT_PULLUP);
+
+  //Interrupt
+  attachInterrupt(digitalPinToInterrupt(interrupt_pin_switch1), LockMotor, RISING);
+  attachInterrupt(digitalPinToInterrupt(interrupt_pin_switch2), LockMotor, RISING);
+
+  //Config Serial
+  Serial.begin(9600); // set the baud rate
+  Serial.println("-*-*-*-*-*-*-*-NEW CONNECTION-*-*-*-*-*-*-*-");
+  Serial.print("Version: ");   
+  Serial.println(prog_version); 
+  Serial.println("<Arduino is ready>"); 
+
+  //Config Display
+  lcd.begin(20, 4); // Achtung HiL hat nur (16, 2), alle anderen Zeichen werden auf HiL abgeschnitten
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Version: ");
+  lcd.setCursor(9, 0);
+  lcd.print(prog_version);
+  lcd.setCursor(0, 1);
+  lcd.print("Arduino is ready"); 
+
+
+}
+//--------------------------------------------------------------------------------------------------------------
+//=====================================================LOOP=================================
+//
+
+void loop() {
+
+  getDataFromPC();
+
+  if (newDataFromPC) {   
+    //Debug Mode from switch
+    DebugMode(digitalRead(switch_debug_mode));
+    showCommandLCD();
+  
+    switch (command) { //TODO: byte wäre auch möglich statt integer
+      case 1: //Bender (X-Achse)
+        if (debug_mode == true){
+          wait_taster(button_next_step); 
+        }
+        run_stepper(xaxis_pul, xaxis_dir, value_1, value_2);
+        break;
+  
+      case 2: //Turn (Y-Achse)
+        if (debug_mode == true){
+          wait_taster(button_next_step); 
+        }
+        run_stepper(yaxis_pul, yaxis_dir, value_1, value_2);
+        break;
+
+      case 3: //Feeder (Z-Achse)
+        if (debug_mode == true){
+          wait_taster(button_next_step); 
+        }
+        run_stepper(zaxis_pul, zaxis_dir, value_1 * -1, value_2); //value_1 invent because different turning direction
+        break;
+
+      case 4: //Linear Motor Pin move up = 1 down = 0
+        if (debug_mode == true){
+          wait_taster(button_next_step); 
+        }
+        move_pin(value_1);
+        break;
+
+      case 5: //Wait for taster
+        wait_taster(button_next_step);
+        break;
+
+      case 8: //Wait in ms
+        lcd.setCursor(0, 3);
+        lcd.print("Wait ms");
+        Serial.println("Wait ms");
+        delay(value_1); //wait in ms (1000 = 1 second) 
+        break;
+
+      case 9: //Change Debug Mode
+        DebugMode(value_1);
+        break;
+          
+      default:
+        Serial.println("Error: Wrong Command at Seriel in");  
+        break;    
+    }
+    replyToPC(); 
+  }
+  
+  newDataFromPC = false;
+}
+
+//============FUNCTIONS=============================
+
 void parseData() {                         // split the data into its parts
     
   char * strtokIndx;                       // this is used by strtok() as an index
@@ -273,7 +311,10 @@ void showCommandLCD() { // Bei Text lcd.write sonst lcd.print
 //============
 
 void run_stepper(int pin_pul, int pin_dir, int steps, int stepper_speed) { //Max. 6kHZ möglich
-  //Serial.println("Stepper is running");
+  Serial.println("Stepper is running");
+  Serial.print("Status Motorlock before running: ");
+  Serial.println(motor_lock); 
+  
 
   //Output Direktion 
   if (steps > 0) {
@@ -295,17 +336,27 @@ void run_stepper(int pin_pul, int pin_dir, int steps, int stepper_speed) { //Max
     delayMicroseconds (pulse_delay); 
     i++;
   }
+  Serial.print("Status Motorlock after stopping: ");
+  Serial.println(motor_lock); 
   
   delay(10);
 }
 
 //============
 
-void run_servo (int servo_goal) {
-  Serial.print("Goal: ");
-  Serial.println(servo_goal);  
+void move_pin (int pin_target) {
+  Serial.print("Bender Pin is moving to target: ");
+  Serial.println(pin_target);  
 
-  myservo.write(servo_goal);
+  if (pin_target == 1){
+    digitalWrite(move_pin_out1, LOW);
+    digitalWrite(move_pin_out2, HIGH);
+  }
+  else {
+    digitalWrite(move_pin_out1, HIGH);
+    digitalWrite(move_pin_out2, LOW);
+  }
+
   delay(1000);
 }
 
@@ -315,38 +366,29 @@ void wait_taster (int input_pin){
   lcd.print("Wait for taster  ");
   Serial.println("Wait for taster");
   
-  while(digitalRead(input_pin)==LOW){}  //wait until taster
+  while(digitalRead(input_pin)==HIGH){}  //wait until taster
   lcd.setCursor(0, 3);
   lcd.print("Taster is pressed"); 
   Serial.println("Taster pressed"); 
-}
 
-void LockMotor (){
-  motor_lock = digitalRead(interrupt_pin_switch);
-  
-  if (motor_lock == false) {
-    Serial.println("Motor-Free"); 
-    lcd.setCursor(15, 0);
-    lcd.print("Free");
-  }
-  if (motor_lock == true) {
-    Serial.println("Motor-Lock"); 
-    lcd.setCursor(15, 0);
-    lcd.print("Lock");
-  }
+  motor_lock = false;
+  Serial.println("Motor-Free"); 
+  lcd.setCursor(15, 0);
+  lcd.print("Free");
+
 }
 
 void DebugMode(int mode){
   if (mode == 1){
     debug_mode = true;
     Serial.println("DEBUG MODE: ON"); 
-    lcd.setCursor(15, 0);
-    lcd.print("D ON");
+    lcd.setCursor(11, 3);
+    lcd.print("Debug ON");
   }
   else {
     debug_mode = false;
     Serial.println("DEBUG MODE: OFF"); 
-    lcd.setCursor(15, 0);
-    lcd.print("OFF D");
+    lcd.setCursor(11, 3);
+    lcd.print("Debug OFF");
   }
 }

@@ -29,10 +29,10 @@ import sys
 
 from PyQt5 import QtWidgets
 
-from Model.Settings import Settings
-from Model.GCode import GCode
+from Bendercontrol.Model.Settings import Settings
+from Bendercontrol.Model.GCode import GCode
 from Bendercontrol.View.GUI import GUI
-from Model.TerminalToArduino import TerminalToArduino
+from Bendercontrol.Model.TerminalToArduino import TerminalToArduino
 
 
 def main():

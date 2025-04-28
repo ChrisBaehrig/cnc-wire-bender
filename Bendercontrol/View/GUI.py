@@ -17,7 +17,7 @@ class GUI(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.terminal = TerminalToArduino()
-        self.ui = uic.loadUi("./View/GUI_Qt.ui", self)
+        self.ui = uic.loadUi("Bendercontrol/View/GUI_Qt.ui", self)
 
         # SLOTS connection to GUI.ui
         self.ui.button_build_connection.clicked.connect(self.on_connect)
