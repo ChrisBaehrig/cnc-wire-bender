@@ -283,7 +283,8 @@ void replyToPC() {
   Serial.print(value_3);
   Serial.print(", ");
   Serial.print(value_4); 
-  Serial.println(">");
+  Serial.print(">");
+  Serial.println();  // Add newline after the closing bracket
 }
 
 //============

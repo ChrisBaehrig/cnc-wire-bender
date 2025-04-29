@@ -34,41 +34,65 @@ class GUI(QtWidgets.QMainWindow):
         self.ui.pushButton_point_zero.clicked.connect(self.on_point_zero)
 
         self.act_gcode_row = 0
-        self.port = 'COM9'  # Default value
         self.arduino_connected = 0
         self.g_code_load = 0
 
+        # Initialize settings and load saved port
         self.settings = Bendercontrol.Model.Settings.Settings()
         self.settings.load_yaml()
+        self.port = self.settings.get_port()
+        
+        # Update GUI with saved port
+        self.ui.label_port.setText("Aktueller COM-Port: " + self.port)
+        # Set the current port in the combo box
+        current_index = self.ui.comboBox_com_port.findText(self.port)
+        if current_index >= 0:
+            self.ui.comboBox_com_port.setCurrentIndex(current_index)
 
     # --------------Folder "Einrichten"---------------------------------
 
     def on_connect(self):
         print("Verbindung aufbauen")
         # Build Connection --------------------------------------------------------
-        port = Bendercontrol.Model.Settings.Settings()
-        port.load_yaml()
-        self.port = port.get_port()
+        self.port = self.settings.get_port()  # Use the settings instance we already have
         self.ui.label_port.setText("Aktueller COM-Port: " + self.port)
-        self.arduino_connected = self.terminal.connection_built(self.port, 9600)
-
-        if self.arduino_connected == 1:
-            self.ui.out_status_connection.setText("Verbindung ist aufgebaut")
+        
+        try:
+            self.arduino_connected = self.terminal.connection_built(self.port, 9600)
+            if self.arduino_connected == 1:
+                self.ui.out_status_connection.setText("Verbindung ist aufgebaut")
+                self.ui.out_status_connection.setStyleSheet("color: green")
+            else:
+                self.ui.out_status_connection.setText("Verbindungsaufbau fehlgeschlagen")
+                self.ui.out_status_connection.setStyleSheet("color: red")
+        except Exception as e:
+            print(f"Connection error: {str(e)}")
+            self.ui.out_status_connection.setText(f"Fehler: {str(e)}")
+            self.ui.out_status_connection.setStyleSheet("color: red")
+            self.arduino_connected = 0
 
     def on_connect_end(self):
-        if self.arduino_connected == 0:
-            print("Verbindung ist bereits beendet")
-
-        else:
-            self.terminal.ser.close()
-            self.ui.out_status_connection.setText("Verbindung ist beendet")
+        try:
+            if self.arduino_connected == 0:
+                print("Verbindung ist bereits beendet")
+            else:
+                self.terminal.ser.close()
+                self.ui.out_status_connection.setText("Verbindung ist beendet")
+                self.ui.out_status_connection.setStyleSheet("color: black")
+                self.arduino_connected = 0
+        except Exception as e:
+            print(f"Error closing connection: {str(e)}")
+            self.ui.out_status_connection.setText("Fehler beim Beenden der Verbindung")
+            self.ui.out_status_connection.setStyleSheet("color: red")
             self.arduino_connected = 0
 
     def on_com_save(self):
-        port = Bendercontrol.Model.Settings.Settings()
-        port.load_yaml()
-        port.set_port(str(self.ui.comboBox_com_port.currentText()))
-        self.ui.label_port.setText("Aktueller COM-Port: " + str(self.ui.comboBox_com_port.currentText()))
+        # Use the existing settings instance instead of creating a new one
+        new_port = str(self.ui.comboBox_com_port.currentText())
+        self.settings.set_port(new_port)
+        self.port = new_port  # Update current port
+        self.ui.label_port.setText("Aktueller COM-Port: " + self.port)
+        print(f"COM-Port gespeichert: {self.port}")  # Debug output
 
     def on_run_xaxis(self):
         if self.arduino_connected == 0:
@@ -77,80 +101,44 @@ class GUI(QtWidgets.QMainWindow):
         axis = str(1)  # Axis: 1 = XAxis...
         steps = str(self.ui.spinBox_einrichten_xaxis.value())
         speed = str(self.ui.spinBox_einrichten_xaxis_speed.value())
-        command_str = "<1, " + axis + ", " + steps + ", " + speed + ">"
+        command_str = "<1, " + axis + ", " + steps + ", " + speed + ", 0, 0>"
 
         self.terminal.send_command(command_str)
-
-        """
-        self.terminal.send_to_arduino(command_str)
-
-        while self.terminal.ser.inWaiting() == 0:  # "Pass" erst wenn Daten angekommen
-            pass
-
-        data_recv = self.terminal.recv_from_arduino()
-        print("Reply Received  " + data_recv)
-        print("===========")
-        """
-
-        time.sleep(5)
+        # Wait for Arduino to finish movement
+        time.sleep(1)  # Reduced fixed delay
 
     def on_run_yaxis(self):
         if self.arduino_connected == 0:
             self.on_connect()
 
-        axis = str(2)  # Axis: 1 = XAxis...
+        axis = str(2)  # Axis: 2 = YAxis...
         steps = str(self.ui.spinBox_einrichten_yaxis.value())
         speed = str(self.ui.spinBox_einrichten_yaxis_speed.value())
-        command_str = "<1, " + axis + ", " + steps + ", " + speed + ">"
-        self.terminal.send_to_arduino(command_str)
-
-        while self.terminal.ser.inWaiting() == 0:  # "Pass" erst wenn Daten angekommen
-            pass
-
-        data_recv = self.terminal.recv_from_arduino()
-        print("Reply Received  " + data_recv)
-        print("===========")
-
-        time.sleep(5)
+        command_str = "<1, " + axis + ", " + steps + ", " + speed + ", 0, 0>"
+        self.terminal.send_command(command_str)
+        time.sleep(1)  # Reduced fixed delay
 
     def on_run_zaxis(self):
         if self.arduino_connected == 0:
             self.on_connect()
 
-        axis = str(3)  # Axis: 1 = XAxis...
+        axis = str(3)  # Axis: 3 = ZAxis...
         steps = str(self.ui.spinBox_einrichten_zaxis.value())
         speed = str(self.ui.spinBox_einrichten_zaxis_speed.value())
-        command_str = "<1, " + axis + ", " + steps + ", " + speed + ">"
-        self.terminal.send_to_arduino(command_str)
-
-        while self.terminal.ser.inWaiting() == 0:  # "Pass" erst wenn Daten angekommen
-            pass
-
-        data_recv = self.terminal.recv_from_arduino()
-        print("Reply Received  " + data_recv)
-        print("===========")
-
-        time.sleep(5)
+        command_str = "<1, " + axis + ", " + steps + ", " + speed + ", 0, 0>"
+        self.terminal.send_command(command_str)
+        time.sleep(1)  # Reduced fixed delay
 
     def on_run_paxis(self):
         if self.arduino_connected == 0:
             self.on_connect()
 
-        axis = str(4)  # Axis: 1 = XAxis...
+        axis = str(4)  # Axis: 4 = PAxis...
         steps = str(self.ui.spinBox_einrichten_paxis.value())
         speed = str(0)
-        command_str = "<1, " + axis + ", " + steps + ", " + speed + ">"
-        self.terminal.send_to_arduino(command_str)
-
-        while self.terminal.ser.inWaiting() == 0:  # "Pass" erst wenn Daten angekommen
-            pass
-
-        data_recv = self.terminal.recv_from_arduino()
-        print("Reply Received  " + data_recv)
-        print("===========")
-
-        time.sleep(5)
-
+        command_str = "<1, " + axis + ", " + steps + ", " + speed + ", 0, 0>"
+        self.terminal.send_command(command_str)
+        time.sleep(1)  # Reduced fixed delay
 
     def on_point_zero(self):
         command = InterpreterToCommand(self.terminal)

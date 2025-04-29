@@ -243,13 +243,13 @@
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Min: -10.286, Max: 10.286&lt;/p&gt;&lt;p&gt;Eine Umdrehung: 10286&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="minimum">
-             <number>-10286</number>
+             <number>-20000</number>
             </property>
             <property name="maximum">
-             <number>10286</number>
+             <number>20000</number>
             </property>
             <property name="singleStep">
-             <number>100</number>
+             <number>1000</number>
             </property>
            </widget>
           </item>
@@ -409,7 +409,7 @@
           <item row="2" column="1">
            <widget class="QLabel" name="label_yaxis">
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Turn (Y-Achse)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>Turn (Y-Achse) [Grad]</string>
             </property>
            </widget>
           </item>
@@ -431,7 +431,7 @@
              <number>20000</number>
             </property>
             <property name="singleStep">
-             <number>100</number>
+             <number>1000</number>
             </property>
            </widget>
           </item>
@@ -489,14 +489,14 @@
           <item row="3" column="1">
            <widget class="QLabel" name="label_zaxis">
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Feeder (Z-Achse)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>Feeder (Z-Achse) [cm]</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
            <widget class="QLabel" name="label_xaxis">
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Bender (X-Achse)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>Bender (X-Achse) [Grad]</string>
             </property>
            </widget>
           </item>
@@ -526,13 +526,13 @@
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Min: 0, Max: 180&lt;/p&gt;&lt;p&gt;Unten: 50&lt;/p&gt;&lt;p&gt;Oben: 160&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="maximum">
-             <number>180</number>
+             <number>1</number>
             </property>
             <property name="singleStep">
-             <number>5</number>
+             <number>1</number>
             </property>
             <property name="value">
-             <number>50</number>
+             <number>0</number>
             </property>
            </widget>
           </item>
@@ -554,7 +554,7 @@
              <number>10700</number>
             </property>
             <property name="singleStep">
-             <number>10</number>
+             <number>1000</number>
             </property>
            </widget>
           </item>
@@ -601,10 +601,10 @@
              <item row="1" column="0">
               <widget class="QSpinBox" name="spinBox_paxis">
                <property name="minimum">
-                <number>-100</number>
+                <number>0</number>
                </property>
                <property name="maximum">
-                <number>100</number>
+                <number>1</number>
                </property>
               </widget>
              </item>
@@ -672,7 +672,7 @@
              <item row="0" column="0">
               <widget class="QLabel" name="text_yaxis">
                <property name="text">
-                <string>Turn (Y-Achse)</string>
+                <string>Turn (Y-Achse) [Grad]</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -695,10 +695,10 @@
                 <bool>false</bool>
                </property>
                <property name="minimum">
-                <number>-10700</number>
+                <number>-720</number>
                </property>
                <property name="maximum">
-                <number>10700</number>
+                <number>720</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
@@ -722,7 +722,7 @@
              <item row="0" column="0">
               <widget class="QLabel" name="text_zaxis">
                <property name="text">
-                <string>Feeder (Z-Achse)</string>
+                <string>Feeder (Z-Achse) [cm]</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -735,10 +735,10 @@
                 <bool>false</bool>
                </property>
                <property name="minimum">
-                <number>-20000</number>
+                <number>-720</number>
                </property>
                <property name="maximum">
-                <number>20000</number>
+                <number>720</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
@@ -752,7 +752,7 @@
              <item row="0" column="0">
               <widget class="QLabel" name="text_xaxis">
                <property name="text">
-                <string>Bender (X-Achse)</string>
+                <string>Bender (X-Achse) [Grad]</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -765,10 +765,10 @@
                 <bool>false</bool>
                </property>
                <property name="minimum">
-                <number>-4000</number>
+                <number>-180</number>
                </property>
                <property name="maximum">
-                <number>4000</number>
+                <number>180</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
