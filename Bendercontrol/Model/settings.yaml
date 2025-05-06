@@ -4,14 +4,14 @@ home_position:
 p_axis:
   name: Pin
   number: 4
-  pin_down: 50
-  pin_up: 160
+  pin_down: 0
+  pin_up: 1
 port: COM4
 position:
   p: 0
-  x: -90.0
-  y: -45
-  z: 90
+  x: 0.0
+  y: 0
+  z: 0
 x_axis:
   angle_max: 135.0
   angle_min: -135.0
@@ -34,5 +34,5 @@ z_axis:
   max_speed: 5000
   name: Feeder
   number: 3
-  steps_per_mm: 6.54445126
+  steps_per_mm: 27.8468085
   work_speed: 1500

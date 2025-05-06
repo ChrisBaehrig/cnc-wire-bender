@@ -53,7 +53,7 @@ class InterpreterToCommand:
         """
         print("G01")
 
-        # ---Z-Axis--- ( And Moving Pin to the side)
+        # ---Z-Axis--- 
         if self.dict_gcode.get('Z', 0):
             old_position = self.settings.get_position()
             print("Last Position              ", old_position)
@@ -61,9 +61,6 @@ class InterpreterToCommand:
 
             new_position[2] = int(self.dict_gcode['Z'])
             print("New Position               ", new_position)
-
-            new_position = self.pin_free_for_driving(old_position, new_position)
-            print("New Position with free Pin ", new_position)
 
             str_command = self.calc_axis_abs(old_position, new_position, 'z_axis', int(self.dict_gcode['K']))
             if str_command != -1:
@@ -90,7 +87,7 @@ class InterpreterToCommand:
             print("Last Position              ", old_position)
             new_position = deepcopy(old_position)
 
-            new_position[0] = float(self.dict_gcode['X'])
+            new_position[0] = int(self.dict_gcode['X'])
             print("New Position               ", new_position)
 
             str_command = self.calc_axis_abs(old_position, new_position, 'x_axis', int(self.dict_gcode['I']))
@@ -173,9 +170,10 @@ class InterpreterToCommand:
         if axis == 'x_axis' or 'y_axis' == axis:  # x_axis or y_axis turn is absolute
             steps_per_round = self.settings.get_setting(axis, 'steps_per_round')
             steps = int((steps_per_round / 360) * (new_position[int(self.settings.get_setting(axis, 'number'))-1] - old_position[int(self.settings.get_setting(axis, 'number'))-1]))
-        elif axis == 'z_axis':  # z_axis feed is relative
+        elif axis == 'z_axis':  # z_axis feed is in mm
             steps_per_mm = self.settings.get_setting(axis, 'steps_per_mm')
-            steps = int(steps_per_mm * (new_position[int(self.settings.get_setting(axis, 'number')) - 1]))
+            mm_value = (new_position[int(self.settings.get_setting(axis, 'number')) - 1] - old_position[int(self.settings.get_setting(axis, 'number')) - 1])  
+            steps = int(steps_per_mm * mm_value)
         elif axis == 'p_axis':  # p_axis feed is absolute 0 or 1
             steps = int(new_position[int(self.settings.get_setting(axis, 'number')) - 1])
         else:
@@ -195,13 +193,11 @@ class InterpreterToCommand:
         self.terminal.send_command("< " + str(row) + ", 4, " + str(pin) + ", 0 >")
         print("Command send to Arduino: < " + str(row) + ", 4, " + str(pin) + ", 0 >")
 
+
+"""
+# Falls benötigt für das freifahren event. später einfügen:
     def pin_free_for_driving(self, old_position, new_position):
-        """
-        to avoid collision between pin and wire
-        :param old_position: list [x, y, z, p]
-        :param new_position: list [x, y, z, p]
-        :return: new_position: list [x, y, z, p]
-        """
+
         feed_distance = abs(old_position[2] - new_position[2])
         speed = self.settings.get_setting('x_axis', 'work_speed')
 
@@ -235,3 +231,6 @@ class InterpreterToCommand:
             self.terminal.send_command(str_command)
 
             return new_position
+
+
+            """
